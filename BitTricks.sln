@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BitTricks", "BitTricks\BitTricks.shproj", "{6173767E-6125-425A-B6BD-CCE95EDD36BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitTricks.P328", "BitTricks.P328\BitTricks.P328.csproj", "{6511B584-4B7B-45C4-AF73-2F1C488144EE}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		BitTricks\BitTricks.projitems*{6173767e-6125-425a-b6bd-cce95edd36bf}*SharedItemsImports = 13
+		BitTricks\BitTricks.projitems*{6511b584-4b7b-45c4-af73-2f1c488144ee}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6511B584-4B7B-45C4-AF73-2F1C488144EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6511B584-4B7B-45C4-AF73-2F1C488144EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6511B584-4B7B-45C4-AF73-2F1C488144EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6511B584-4B7B-45C4-AF73-2F1C488144EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
