@@ -4,7 +4,7 @@
 
     public static sbyte GetAbs(this sbyte value)
     {
-        var mask = value >> 15;
+        var mask = value >> 7;
         return (sbyte)((value + mask) ^ mask);
     }
 
