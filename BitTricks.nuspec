@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>BitTricks</id>
+        <version>0.1-Abaddon</version>
+        <authors>Licshee</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>-</description>
+    </metadata>
+    <files>
+        <file src="Release\BitTricks.dll" target="lib\BitTricks.dll" />
+    </files>
+</package>
