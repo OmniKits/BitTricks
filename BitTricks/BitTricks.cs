@@ -1,33 +1,7 @@
-﻿static partial class BitTricks
+﻿using System;
+
+static partial class BitTricks
 {
-    #region Abs
-
-    public static sbyte GetAbs(this sbyte value)
-    {
-        var mask = value >> 7;
-        return (sbyte)((value + mask) ^ mask);
-    }
-
-    public static short GetAbs(this short value)
-    {
-        var mask = value >> 15;
-        return (short)((value + mask) ^ mask);
-    }
-
-    public static int GetAbs(this int value)
-    {
-        var mask = value >> 31;
-        return (value + mask) ^ mask;
-    }
-
-    public static long GetAbs(this long value)
-    {
-        var mask = value >> 63;
-        return (value + mask) ^ mask;
-    }
-
-    #endregion
-
     #region FlipBits
 
     public static byte FlipBits(this byte value)
@@ -39,9 +13,7 @@
         return (byte)v;
     }
     public static sbyte FlipBits(this sbyte value)
-        => (sbyte)((byte)value).FlipBits();
-    public static sbyte FlipBits7(this sbyte value)
-        => (sbyte)(((byte)value).FlipBits() >> 1);
+        => (sbyte)((value & 0x80) | (((byte)value).FlipBits() >> 1));
 
     public static ushort FlipBits(this ushort value)
     {
@@ -53,9 +25,7 @@
         return (ushort)v;
     }
     public static short FlipBits(this short value)
-        => (short)((ushort)value).FlipBits();
-    public static short FlipBits15(this short value)
-        => (short)(((ushort)value).FlipBits() >> 1);
+        => (short)((value & 0x8000) | (((ushort)value).FlipBits() >> 1));
 
     public static uint FlipBits(this uint value)
     {
@@ -67,9 +37,7 @@
         return value;
     }
     public static int FlipBits(this int value)
-        => (int)((uint)value).FlipBits();
-    public static int FlipBits31(this int value)
-        => (int)(((uint)value).FlipBits() >> 1);
+        => (value & unchecked((int)0x80000000)) | (int)(((uint)value).FlipBits() >> 1);
 
     public static ulong FlipBits(this ulong value)
     {
@@ -82,22 +50,36 @@
         return value;
     }
     public static long FlipBits(this long value)
-        => (long)((ulong)value).FlipBits();
-    public static long FlipBits63(this long value)
-        => (long)(((ulong)value).FlipBits() >> 1);
+        => (value & unchecked((long)0x8000000000000000)) | (long)(((ulong)value).FlipBits() >> 1);
 
     #endregion
 
-    #region GetSign
+    #region GetSignPattern
 
-    public static sbyte GetSign(this sbyte value)
+    public static sbyte GetSignPattern(this sbyte value)
         => (sbyte)(value >> 7);
-    public static short GetSign(this short value)
+    public static short GetSignPattern(this short value)
         => (short)(value >> 15);
-    public static int GetSign(this int value)
+    public static int GetSignPattern(this int value)
         => value >> 31;
-    public static long GetSign(this long value)
+    public static long GetSignPattern(this long value)
         => value >> 63;
+
+    #endregion
+
+    #region ZigZag
+
+    public static uint Zig(this int value)
+        => (uint)(value.GetSignPattern() ^ value << 1);
+
+    public static int Zag(this uint value)
+        => ((int)value << 31).GetSignPattern() ^ (int)(value >> 1);
+
+    public static ulong Zig(this long value)
+        => (ulong)(value.GetSignPattern() ^ value << 1);
+
+    public static long Zag(this ulong value)
+        => ((long)value << 63).GetSignPattern() ^ (long)(value >> 1);
 
     #endregion
 }
