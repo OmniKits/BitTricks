@@ -67,6 +67,30 @@ static partial class BitTricks
 
     #endregion
 
+    #region ToBinaryString
+
+    public static string ToBinaryString(this byte value)
+        => Convert.ToString(value, 2).PadLeft(8, '0');
+    public static string ToBinaryString(this sbyte value)
+        => ((byte)value).ToBinaryString();
+
+    public static string ToBinaryString(this short value)
+        => Convert.ToString(value, 2).PadLeft(16, '0');
+    public static string ToBinaryString(this ushort value)
+        => ((short)value).ToBinaryString();
+
+    public static string ToBinaryString(this int value)
+        => Convert.ToString(value, 2).PadLeft(32, '0');
+    public static string ToBinaryString(this uint value)
+        => ((int)value).ToBinaryString();
+
+    public static string ToBinaryString(this long value)
+        => Convert.ToString(value, 2).PadLeft(64, '0');
+    public static string ToBinaryString(this ulong value)
+        => ((long)value).ToBinaryString();
+
+    #endregion
+
     #region ZigZag
 
     public static uint Zig(this int value)

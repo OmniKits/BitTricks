@@ -12,8 +12,8 @@ public class FlipBitsTests
     {
         for (byte b = 0; b < byte.MaxValue; b++)
         {
-            var bits = Convert.ToString(b, 2).PadLeft(8, '0');
-            var flip = Convert.ToString(b.FlipBits(), 2).PadLeft(8, '0');
+            var bits = b.ToBinaryString();
+            var flip = b.FlipBits().ToBinaryString();
 
             Assert.Equal(bits, string.Join("", flip.Reverse()));
         }
@@ -26,13 +26,11 @@ public class FlipBitsTests
         {
             var b = (byte)s;
 
-            var bits = Convert.ToString(b, 2);
-            bits = bits.PadLeft(8, '0');
+            var bits = b.ToBinaryString();
 
             b = (byte)(s.FlipBits());
 
-            var flip = Convert.ToString(b, 2);
-            flip = flip.PadLeft(8, '0');
+            var flip = b.ToBinaryString();
 
             flip = flip[0] + string.Join("", flip.Skip(1).Reverse());
 
@@ -45,8 +43,8 @@ public class FlipBitsTests
     {
         for (ushort u = 0; u < ushort.MaxValue; u++)
         {
-            var bits = Convert.ToString((short)u, 2).PadLeft(16, '0');
-            var flip = Convert.ToString((short)u.FlipBits(), 2).PadLeft(16, '0');
+            var bits = u.ToBinaryString();
+            var flip = u.FlipBits().ToBinaryString();
 
             Assert.Equal(bits, string.Join("", flip.Reverse()));
         }
@@ -60,8 +58,8 @@ public class FlipBitsTests
         {
             var u = (ushort)rnd.Next();
 
-            var bits = Convert.ToString((short)u, 2).PadLeft(16, '0');
-            var flip = Convert.ToString((short)u.FlipBits(), 2).PadLeft(16, '0');
+            var bits = u.ToBinaryString();
+            var flip = u.FlipBits().ToBinaryString();
 
             Assert.Equal(bits, string.Join("", flip.Reverse()));
         }
@@ -74,13 +72,11 @@ public class FlipBitsTests
         {
             var u = (ushort)s;
 
-            var bits = Convert.ToString((short)u, 2);
-            bits = bits.PadLeft(16, '0');
+            var bits = u.ToBinaryString();
 
             u = (ushort)(s.FlipBits());
 
-            var flip = Convert.ToString((short)u, 2);
-            flip = flip.PadLeft(16, '0');
+            var flip = u.ToBinaryString();
 
             flip = flip[0] + string.Join("", flip.Skip(1).Reverse());
 
@@ -97,13 +93,11 @@ public class FlipBitsTests
             var u = (ushort)rnd.Next();
             var s = (short)u;
 
-            var bits = Convert.ToString((short)u, 2);
-            bits = bits.PadLeft(16, '0');
+            var bits = u.ToBinaryString();
 
             u = (ushort)(s.FlipBits());
 
-            var flip = Convert.ToString((short)u, 2);
-            flip = flip.PadLeft(16, '0');
+            var flip = u.ToBinaryString();
 
             flip = flip[0] + string.Join("", flip.Skip(1).Reverse());
 
@@ -119,8 +113,8 @@ public class FlipBitsTests
         {
             var u = (uint)(rnd.NextDouble() * uint.MaxValue) + 1;
 
-            var bits = Convert.ToString((int)u, 2).PadLeft(32, '0');
-            var flip = Convert.ToString((int)u.FlipBits(), 2).PadLeft(32, '0');
+            var bits = u.ToBinaryString();
+            var flip = u.FlipBits().ToBinaryString();
 
             Assert.Equal(bits, string.Join("", flip.Reverse()));
         }
@@ -135,13 +129,11 @@ public class FlipBitsTests
             var u = (uint)(rnd.NextDouble() * uint.MaxValue) + 1;
             var s = (int)u;
 
-            var bits = Convert.ToString((int)u, 2);
-            bits = bits.PadLeft(32, '0');
+            var bits = u.ToBinaryString();
 
             u = (uint)(s.FlipBits());
 
-            var flip = Convert.ToString((int)u, 2);
-            flip = flip.PadLeft(32, '0');
+            var flip = u.ToBinaryString();
 
             flip = flip[0] + string.Join("", flip.Skip(1).Reverse());
 
@@ -157,8 +149,8 @@ public class FlipBitsTests
         {
             var u = (ulong)(rnd.NextDouble() * ulong.MaxValue) + 1;
 
-            var bits = Convert.ToString((long)u, 2).PadLeft(64, '0');
-            var flip = Convert.ToString((long)u.FlipBits(), 2).PadLeft(64, '0');
+            var bits = u.ToBinaryString();
+            var flip = u.FlipBits().ToBinaryString();
 
             Assert.Equal(bits, string.Join("", flip.Reverse()));
         }
@@ -173,13 +165,11 @@ public class FlipBitsTests
             var u = (ulong)(rnd.NextDouble() * ulong.MaxValue) + 1;
             var s = (long)u;
 
-            var bits = Convert.ToString((long)u, 2);
-            bits = bits.PadLeft(64, '0');
+            var bits = u.ToBinaryString();
 
             u = (ulong)(s.FlipBits());
 
-            var flip = Convert.ToString((long)u, 2);
-            flip = flip.PadLeft(64, '0');
+            var flip = u.ToBinaryString();
 
             flip = flip[0] + string.Join("", flip.Skip(1).Reverse());
 

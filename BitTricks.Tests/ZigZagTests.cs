@@ -35,14 +35,15 @@ public class ZigZagTests
         for (var i = 0; i < RandomTestCount; i++)
         {
             var v = (int)(uint)(rnd.NextDouble() * uint.MaxValue) + 1;
-            var vBits = Convert.ToString(v, 2).PadLeft(32, '0');
+            var vBits = v.ToBinaryString();
 
             var z = v.Zig();
-            var zBits = Convert.ToString((int)z, 2).PadLeft(32, '0');
+            var zBits = z.ToBinaryString();
 
             var r = z.Zag();
-            var rBits = Convert.ToString(r, 2).PadLeft(32, '0');
+            var rBits = r.ToBinaryString();
 
+            Assert.Equal(vBits, rBits);
             Assert.Equal(v, r);
             Assert.Equal(v, ZagRefImpl(z));
         }
@@ -71,14 +72,15 @@ public class ZigZagTests
         for (var i = 0; i < RandomTestCount; i++)
         {
             var v = (long)(ulong)(rnd.NextDouble() * ulong.MaxValue) + 1;
-            var vBits = Convert.ToString(v, 2).PadLeft(64, '0');
+            var vBits = v.ToBinaryString();
 
             var z = v.Zig();
-            var zBits = Convert.ToString((long)z, 2).PadLeft(64, '0');
+            var zBits = z.ToBinaryString();
 
             var r = z.Zag();
-            var rBits = Convert.ToString(r, 2).PadLeft(64, '0');
+            var rBits = r.ToBinaryString();
 
+            Assert.Equal(vBits, rBits);
             Assert.Equal(v, r);
             Assert.Equal(v, ZagRefImpl(z));
         }
