@@ -2,6 +2,61 @@
 
 static partial class BitTricks
 {
+    #region MAGIC, NO TOUCH!
+
+    // http://graphics.stanford.edu/~seander/bithacks.html#IntegerLogDeBruijn
+
+    static readonly byte[] DeBruijnMSB32table = new byte[]
+    {
+        0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
+        8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
+    };
+    const uint DeBruijnMSB32multi = 0x07C4ACDDu;
+    public static byte GetMostSignificantBit(uint value)
+    {
+        value |= value >> 1;
+        value |= value >> 2;
+        value |= value >> 4;
+        value |= value >> 8;
+        value |= value >> 16;
+
+        return DeBruijnMSB32table[value * DeBruijnMSB32multi >> 27];
+    }
+
+    public static byte GetMostSignificantBit(this int value)
+        => GetMostSignificantBit((uint)value);
+
+    // used generator from http://chessprogramming.wikispaces.com/De+Bruijn+Sequence+Generator
+    static readonly byte[] DeBruijnMSB64table = new byte[]
+    {
+	    0 ,	47,	1 ,	56,	48,	27,	2 ,	60,
+	    57,	49,	41,	37,	28,	16,	3 ,	61,
+	    54,	58,	35,	52,	50,	42,	21,	44,
+	    38,	32,	29,	23,	17,	11,	4 ,	62,
+	    46,	55,	26,	59,	40,	36,	15,	53,
+	    34,	51,	20,	43,	31,	22,	10,	45,
+	    25,	39,	14,	33,	19,	30,	9 ,	24,
+	    13,	18,	8 ,	12,	7 ,	6 ,	5 ,	63,
+    };
+    // the cyclc number has to be in the last 16th of all possible values
+    // any beyond the 62914560th(0x03C0_0000) should work for this purpose
+    const ulong DeBruijnMSB64multi = 0x03F79D71B4CB0A89uL; // the last one
+    public static int GetMostSignificantBit(this ulong value)
+    {
+        value |= value >> 1;
+        value |= value >> 2;
+        value |= value >> 4;
+        value |= value >> 8;
+        value |= value >> 16;
+        value |= value >> 32;
+
+        return DeBruijnMSB64table[value * DeBruijnMSB64multi >> 58];
+    }
+    public static int GetMostSignificantBit(this long value)
+        => GetMostSignificantBit((ulong)value);
+
+    #endregion
+
     #region FlipBits
 
     public static byte FlipBits(this byte value)
