@@ -41,7 +41,7 @@ static partial class BitTricks
     // the cyclc number has to be in the last 16th of all possible values
     // any beyond the 62914560th(0x03C0_0000) should work for this purpose
     const ulong DeBruijnMSB64multi = 0x03F79D71B4CB0A89uL; // the last one
-    public static int GetMostSignificantBit(this ulong value)
+    public static byte GetMostSignificantBit(this ulong value)
     {
         value |= value >> 1;
         value |= value >> 2;
@@ -52,7 +52,7 @@ static partial class BitTricks
 
         return DeBruijnMSB64table[value * DeBruijnMSB64multi >> 58];
     }
-    public static int GetMostSignificantBit(this long value)
+    public static byte GetMostSignificantBit(this long value)
         => GetMostSignificantBit((ulong)value);
 
     #endregion
