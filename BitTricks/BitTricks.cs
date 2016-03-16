@@ -6,13 +6,24 @@ static partial class BitTricks
 
     // http://graphics.stanford.edu/~seander/bithacks.html#IntegerLogDeBruijn
 
-    static readonly byte[] DeBruijnMSB32table = new byte[]
+    static readonly byte[] DeBruijnTable32 = new byte[]
     {
         0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
         8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
     };
-    const uint DeBruijnMSB32multi = 0x07C4ACDDu;
-    public static byte GetMostSignificantBit(uint value)
+    const uint DeBruijnMultiplicator32 = 0x07C4ACDDu;
+    static byte lookupDeBruijnTable32(uint value)
+        => DeBruijnTable32[value * DeBruijnMultiplicator32 >> 27];
+    public static byte GetLeastSignificantBit(this uint value)
+    {
+        value = value ^ (value - 1);
+
+        return lookupDeBruijnTable32(value);
+    }
+    public static byte GetLeastSignificantBit(this int value)
+        => GetLeastSignificantBit((uint)value);
+
+    public static byte GetMostSignificantBit(this uint value)
     {
         value |= value >> 1;
         value |= value >> 2;
@@ -20,14 +31,13 @@ static partial class BitTricks
         value |= value >> 8;
         value |= value >> 16;
 
-        return DeBruijnMSB32table[value * DeBruijnMSB32multi >> 27];
+        return lookupDeBruijnTable32(value);
     }
-
     public static byte GetMostSignificantBit(this int value)
         => GetMostSignificantBit((uint)value);
 
     // used generator from http://chessprogramming.wikispaces.com/De+Bruijn+Sequence+Generator
-    static readonly byte[] DeBruijnMSB64table = new byte[]
+    static readonly byte[] DeBruijnTable64 = new byte[]
     {
 	    0 ,	47,	1 ,	56,	48,	27,	2 ,	60,
 	    57,	49,	41,	37,	28,	16,	3 ,	61,
@@ -40,7 +50,18 @@ static partial class BitTricks
     };
     // the cyclc number has to be in the last 16th of all possible values
     // any beyond the 62914560th(0x03C0_0000) should work for this purpose
-    const ulong DeBruijnMSB64multi = 0x03F79D71B4CB0A89uL; // the last one
+    const ulong DeBruijnMultiplicator64 = 0x03F79D71B4CB0A89uL; // the last one
+    static byte lookupDeBruijnTable64(ulong value)
+        => DeBruijnTable64[value * DeBruijnMultiplicator64 >> 58];
+    public static byte GetLeastSignificantBit(this ulong value)
+    {
+        value = value ^ (value - 1);
+
+        return lookupDeBruijnTable64(value);
+    }
+    public static byte GetLeastSignificantBit(this long value)
+        => GetLeastSignificantBit((ulong)value);
+
     public static byte GetMostSignificantBit(this ulong value)
     {
         value |= value >> 1;
@@ -50,7 +71,7 @@ static partial class BitTricks
         value |= value >> 16;
         value |= value >> 32;
 
-        return DeBruijnMSB64table[value * DeBruijnMSB64multi >> 58];
+        return lookupDeBruijnTable64(value);
     }
     public static byte GetMostSignificantBit(this long value)
         => GetMostSignificantBit((ulong)value);

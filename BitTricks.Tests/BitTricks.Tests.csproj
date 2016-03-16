@@ -61,6 +61,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DeBruijnTests.cs" />
     <Compile Include="FlipBitsTests.cs" />
     <Compile Include="GetSignPatternTests.cs" />
     <Compile Include="ZigZagTests.cs" />
