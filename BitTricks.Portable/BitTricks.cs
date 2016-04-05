@@ -1,1 +1,0 @@
-﻿public static partial class BitTricks { }

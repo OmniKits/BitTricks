@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
-    <metadata>
-        <id>BitTricks</id>
-        <version>0.1-Aeon</version>
-        <authors>Licshee</authors>
-        <projectUrl>https://github.com/OmniKits/BitTricks</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>-</description>
-    </metadata>
-    <files>
-        <file src="Release\BitTricks.dll" target="lib\BitTricks.dll" />
-    </files>
-</package>   
+  <metadata>
+    <id>BitTricks</id>
+    <version>0.1-Algos</version>
+    <authors>OmniKits</authors>
+    <projectUrl>https://github.com/OmniKits/BitTricks</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>-</description>
+  </metadata>
+  <files>
+    <file src="Release\BitTricks.dll" target="lib\BitTricks.dll" />
+  </files>
+</package>
